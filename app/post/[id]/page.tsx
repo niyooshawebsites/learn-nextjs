@@ -6,10 +6,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-type PageProps = {
-  params: {
-    id: string;
-  };
+// type PageProps = {
+//   params: {
+//     id: string;
+//   };
+// };
+
+type Params = {
+  id: string;
 };
 
 const getData = async (id: string) => {
@@ -22,8 +26,7 @@ const getData = async (id: string) => {
   return data;
 };
 
-const PageId = async ({ params }) => {
-  const { id } = await params;
+const PageId = async ({ id }: Params) => {
   const data = await getData(id);
 
   if (!data) return notFound();
