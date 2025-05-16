@@ -22,7 +22,7 @@ const getData = async (id: string) => {
   return data;
 };
 
-const PageId = async ({ params }: PageProps) => {
+const PageId = async ({ params }) => {
   const { id } = await params;
   const data = await getData(id);
 
