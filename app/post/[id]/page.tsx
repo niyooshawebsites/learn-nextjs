@@ -23,7 +23,7 @@ const getData = async (id: string) => {
 };
 
 const PageId = async ({ params }: PageProps) => {
-  const { id } = params;
+  const { id } = await params;
   const data = await getData(id);
 
   if (!data) return notFound();
