@@ -16,7 +16,13 @@ const getData = async (id: string) => {
   return data;
 };
 
-const PageId = async ({ params }: { params: { id: string } }) => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const PageId = async ({ params }: Props) => {
   const { id } = params;
   const data = await getData(id);
 
