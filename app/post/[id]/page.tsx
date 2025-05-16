@@ -6,10 +6,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-type Params = {
-  id: string;
-};
-
 const getData = async (id: string) => {
   const data = await prisma.blogPost.findUnique({
     where: {
@@ -20,8 +16,14 @@ const getData = async (id: string) => {
   return data;
 };
 
-export default async function Page({ id }: Params) {
-  const data = await getData(id);
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function Page({ params }: PageProps) {
+  const data = await getData(params.id);
 
   if (!data) return notFound();
 
@@ -54,6 +56,7 @@ export default async function Page({ id }: Params) {
           </p>
         </div>
       </div>
+
       <div className="relative h-[450px] w-full mb-8 overflow-hidden rounded-lg">
         <Image
           src={data.imageUrl}
@@ -63,6 +66,7 @@ export default async function Page({ id }: Params) {
           priority
         />
       </div>
+
       <Card>
         <CardContent>
           <p className="text-gray-700">{data.content}</p>
