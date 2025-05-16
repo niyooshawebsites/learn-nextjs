@@ -6,8 +6,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
 const getData = async (id: string) => {
-  const data = await prisma.BlogPost.findUnique({
+  const data = await prisma.blogPost.findUnique({
     where: {
       id: id,
     },
@@ -16,13 +22,7 @@ const getData = async (id: string) => {
   return data;
 };
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-const PageId = async ({ params }: Props) => {
+const PageId = async ({ params }: PageProps) => {
   const { id } = params;
   const data = await getData(id);
 
