@@ -6,12 +6,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-// type PageProps = {
-//   params: {
-//     id: string;
-//   };
-// };
-
 type Params = {
   id: string;
 };
@@ -26,7 +20,7 @@ const getData = async (id: string) => {
   return data;
 };
 
-const PageId = async ({ id }: Params) => {
+export default async function Page({ id }: Params) {
   const data = await getData(id);
 
   if (!data) return notFound();
@@ -76,6 +70,4 @@ const PageId = async ({ id }: Params) => {
       </Card>
     </div>
   );
-};
-
-export default PageId;
+}
